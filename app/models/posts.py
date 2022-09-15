@@ -3,11 +3,10 @@ import datetime
 from app import db, ma
 
 
-
 class Posts(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(40), nullable=False)
-    description= db.Column(db.Text, nullable=False)
+    description = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     created_on = db.Column(db.DateTime, default=datetime.datetime.now())
     user = db.relationship('Users', back_populates='posts')

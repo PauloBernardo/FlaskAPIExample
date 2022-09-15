@@ -7,7 +7,7 @@ from ..models.users import Users, user_schema, users_schema
 """Retorna lista de usuários"""
 
 
-def get_users():
+def get_users(current_user):
     name = request.args.get('name')
     if name:
         users = Users.query.filter(Users.name.like(f'%{name}%')).all()
@@ -23,11 +23,11 @@ def get_users():
 """Retorna usuário específico pelo ID no parametro da request"""
 
 
-def get_user(id):
+def get_user(current_user, id):
     user = Users.query.get(id)
     if user:
         result = user_schema.dump(user)
-        return jsonify({'message': 'successfully fetched', 'data': result.data}), 201
+        return jsonify({'message': 'successfully fetched', 'data': result}), 201
 
     return jsonify({'message': "user don't exist", 'data': {}}), 404
 
@@ -62,7 +62,7 @@ def post_user():
 """Atualiza usuário baseado no ID, caso o mesmo exista."""
 
 
-def update_user(id):
+def update_user(current_user, id):
     username = request.json['username']
     password = request.json['password']
     name = request.json['name']
@@ -90,7 +90,7 @@ def update_user(id):
 """Deleta usuário com base no ID da request"""
 
 
-def delete_user(id):
+def delete_user(current_user, id):
     user = Users.query.get(id)
     if not user:
         return jsonify({'message': "user don't exist", 'data': {}}), 404
@@ -105,7 +105,7 @@ def delete_user(id):
             return jsonify({'message': 'unable to delete', 'data': {}}), 500
 
 
-def user_by_username(username):
+def user_by_username(current_user, username):
     try:
         return Users.query.filter(Users.username == username).one()
     except:

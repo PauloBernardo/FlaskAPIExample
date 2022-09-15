@@ -18,13 +18,15 @@ def authenticate():
 
 
 @app.route('/v1/users', methods=['GET'])
-def get_users():
-    return users.get_users()
+@helper.token_required
+def get_users(current_user):
+    return users.get_users(current_user)
 
 
 @app.route('/v1/users/<id>', methods=['GET'])
-def get_user(id):
-    return users.get_user(id)
+@helper.token_required
+def get_user(current_user, id):
+    return users.get_user(current_user, id)
 
 
 @app.route('/v1/users', methods=['POST'])
@@ -33,15 +35,17 @@ def post_users():
 
 
 @app.route('/v1/users/<id>', methods=['DELETE'])
-def delete_users(id):
-    return users.delete_user(id)
+def delete_users(current_user, id):
+    return users.delete_user(current_user, id)
 
 
 @app.route('/v1/users/<id>', methods=['PUT'])
-def update_users(id):
-    return users.update_user(id)
+@helper.token_required
+def update_users(current_user, id):
+    return users.update_user(current_user, id)
 
 
 @app.route('/v1/auth', methods=['POST'])
+@helper.token_required
 def auth():
     pass

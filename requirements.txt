@@ -22,4 +22,4 @@ SQLAlchemy==1.4.41
 Werkzeug==2.2.2
 zipp==3.8.1
 flask_sqlalchemy
-jwt
+Pyjwt
