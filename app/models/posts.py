@@ -25,5 +25,5 @@ class PostsSchema(ma.Schema):
         fields = ('id', 'title', 'description', 'user_id', 'created_on')
 
 
-post_schema = PostsSchema(strict=True)
+post_schema = PostsSchema()
 posts_schema = PostsSchema(many=True)

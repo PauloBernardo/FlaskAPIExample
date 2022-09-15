@@ -15,7 +15,7 @@ def get_users():
         users = Users.query.all()
     if users:
         result = users_schema.dump(users)
-        return jsonify({'message': 'successfully fetched', 'data': result.data})
+        return jsonify({'message': 'successfully fetched', 'data': result})
 
     return jsonify({'message': 'nothing found', 'data': {}})
 
@@ -53,8 +53,9 @@ def post_user():
         db.session.add(user)
         db.session.commit()
         result = user_schema.dump(user)
-        return jsonify({'message': 'successfully registered', 'data': result.data}), 201
-    except:
+        return jsonify({'message': 'successfully registered', 'data': result}), 201
+    except Exception as e:
+        print(e)
         return jsonify({'message': 'unable to create', 'data': {}}), 500
 
 
@@ -81,7 +82,7 @@ def update_user(id):
             user.email = email
             db.session.commit()
             result = user_schema.dump(user)
-            return jsonify({'message': 'successfully updated', 'data': result.data}), 201
+            return jsonify({'message': 'successfully updated', 'data': result}), 201
         except:
             return jsonify({'message': 'unable to update', 'data':{}}), 500
 
@@ -99,7 +100,7 @@ def delete_user(id):
             db.session.delete(user)
             db.session.commit()
             result = user_schema.dump(user)
-            return jsonify({'message': 'successfully deleted', 'data': result.data}), 200
+            return jsonify({'message': 'successfully deleted', 'data': result}), 200
         except:
             return jsonify({'message': 'unable to delete', 'data': {}}), 500
 

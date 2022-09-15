@@ -1,7 +1,6 @@
 from app import app
-from flask import jsonify, url_for, redirect
+from flask import jsonify
 from ..views import users, helper
-
 
 """Neste arquivo iremos criar todas rotas para aplicação para manter o código limpo usando
  as views(controllers)  e as relacionando por meio de funções"""
@@ -41,6 +40,7 @@ def delete_users(id):
 @app.route('/v1/users/<id>', methods=['PUT'])
 def update_users(id):
     return users.update_user(id)
+
 
 @app.route('/v1/auth', methods=['POST'])
 def auth():

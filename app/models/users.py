@@ -1,8 +1,9 @@
 import datetime
 from app import db, ma
 
-
 """Definição da classe/tabela dos usuários e seus campos"""
+
+
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
@@ -21,10 +22,12 @@ class Users(db.Model):
 
 
 """Definindo o Schema do Marshmallow para facilitar a utilização de JSON"""
+
+
 class UsersSchema(ma.Schema):
     class Meta:
         fields = ('id', 'username', 'name', 'email', 'password', 'created_on')
 
 
 user_schema = UsersSchema()
-users_schema = UsersSchema(strict=True, many=True)
+users_schema = UsersSchema(many=True)

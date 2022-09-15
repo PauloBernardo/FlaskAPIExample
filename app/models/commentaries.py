@@ -25,5 +25,5 @@ class CommentariesSchema(ma.Schema):
         fields = ('id', 'commentary', 'user_id', 'post_id', 'created_on')
 
 
-commentary_schema = CommentariesSchema(strict=True)
+commentary_schema = CommentariesSchema()
 commentaries_schema = CommentariesSchema(many=True)

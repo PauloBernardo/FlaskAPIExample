@@ -3,6 +3,9 @@ import os
 import random
 import string
 
+import pymysql
+pymysql.install_as_MySQLdb()
+
 # Armazena a localização atual do arquivo
 basedir = os.path.dirname(os.path.realpath(__file__))
 

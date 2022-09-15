@@ -1,6 +1,22 @@
 # API REST usando framework Flask com SQLAlchemy e Marshmallow
- 
+
+## Python version 3.8.14
+
 ## How-To
+
+# Install
+
+`sudo apt-get install libmysqlclient-dev`
+
+`sudo apt-get install -y python3-mysqldb`
+
+# Database
+
+**Entre na venv e entre na linha de comando do python, depois execute**
+
+`from app import db`
+
+`db.create_all()`
 
 # Endpoint de usuários
 
