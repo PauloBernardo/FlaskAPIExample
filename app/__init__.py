@@ -1,10 +1,15 @@
 from flask import Flask, jsonify
 from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS, cross_origin
+
+app = Flask(__name__)
 
 
 app = Flask(__name__)
 app.config.from_object('config')
+CORS(app, origins="*")
+
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 
