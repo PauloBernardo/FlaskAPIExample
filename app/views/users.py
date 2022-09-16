@@ -41,7 +41,7 @@ def post_user():
     name = request.json['name']
     email = request.json['email']
 
-    user = user_by_username(username)
+    user = user_by_username(None, username)
     if user:
         result = user_schema.dump(user)
         return jsonify({'message': 'user already exists', 'data': {}})
